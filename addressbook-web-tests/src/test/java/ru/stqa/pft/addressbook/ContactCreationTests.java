@@ -5,18 +5,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
-
 import java.util.concurrent.TimeUnit;
-import java.util.Date;
-import java.io.File;
 
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.*;
-
-import static org.openqa.selenium.OutputType.*;
 
 public class ContactCreationTests {
     FirefoxDriver wd;
@@ -40,7 +32,7 @@ public class ContactCreationTests {
     @Test
     public void testContactCreation() {
         initContactCreation();
-        enterContactInfo();
+        enterContactInfo("Jason", "Statham");
         saveContactInfo();
     }
 
@@ -49,14 +41,15 @@ public class ContactCreationTests {
         wd.findElement(By.linkText("add new")).click();
     }
 
-    private void enterContactInfo() {
+    private void enterContactInfo(String firstName, String lastName) {
 
         wd.findElement(By.name("firstname")).click();
         wd.findElement(By.name("firstname")).clear();
-        wd.findElement(By.name("firstname")).sendKeys("Jason");
+        wd.findElement(By.name("firstname")).sendKeys(firstName);
         wd.findElement(By.name("lastname")).click();
         wd.findElement(By.name("lastname")).clear();
-        wd.findElement(By.name("lastname")).sendKeys("Statham");
+        wd.findElement(By.name("lastname")).sendKeys(lastName);
+
     }
 
     private void saveContactInfo() {
